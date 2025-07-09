@@ -1,0 +1,5 @@
+usar python 3.10 y mysql
+tambien usar un entorno virtual
+por si sale problemas circundates de libreria
+
+https://www.youtube.com/watch?v=cTSVYwxHn9g
