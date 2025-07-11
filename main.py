@@ -9,7 +9,7 @@ import database as db
 
 
 # CONFIG
-path = "C:/Users/user/Documents/facial_recognition/" # your path
+path = "C:/Users/user/Documents/tensorflow-opencv-reconocimiento facial/" # your path
 txt_login = "Iniciar Sesión"
 txt_register = "Registrarse"
 
@@ -170,9 +170,14 @@ def login_capture():
 
             comp = compatibility(face_reg, face_log)
 
-            if comp >= 0.94:
+            if comp >= 0.80:
                 print("{}Compatibilidad del {:.1%}{}".format(color_success, float(comp), color_normal))
                 printAndShow(screen2, f"Bienvenido, {user_login}", 1)
+                #
+                name = f"{user_login}"
+                db.registerAsis(name)
+                printAndShow(screen2, "¡Éxito! Se ha registrado correctamente", 1)
+
             else:
                 print("{}Compatibilidad del {:.1%}{}".format(color_error, float(comp), color_normal))
                 printAndShow(screen2, "¡Error! Incopatibilidad de datos", 0)

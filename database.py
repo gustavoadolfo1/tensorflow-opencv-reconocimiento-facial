@@ -41,6 +41,28 @@ def registerUser(name, photo):
             con.close()
     return {"id": id, "affected":inserted}
 
+def registerAsis(name):
+    id=0
+    inserted = 0
+
+    try:
+        con =db.connect(host=keys["host"], user=keys["user"], password=keys["password"], database=keys["database"])
+        cursor = con.cursor()
+        sql=f"INSERT INTO `asistencia`(name) VALUES ('{name}')"
+        cursor.execute(sql)
+        con.commit()
+        inserted = cursor.rowcount
+        id=cursor.lastrowid
+
+    except db.Error as e:
+        print(f"Failed inserting image: {e}")
+    finally:
+        if con.is_connected():
+            cursor.close()
+            con.close()
+    return { "id": id, "affected":inserted}
+
+
 def getUser(name, path):
     id = 0
     rows = 0
